@@ -45,8 +45,9 @@ class DemoBot:
                                 print('\t- Chatroom {} - new message #{}: \'{}\' - {}'.format(room_id, message['ordinal'], message['message'], self.get_time()))
 
                                 ##### You should call your agent here and get the response message #####
+                                self.post_message(room_id=room_id, session_token=self.session_token, message='Hallo Danke') # returns answer
 
-                                self.post_message(room_id=room_id, session_token=self.session_token, message='Got your message: \'{}\' at {}.'.format(message['message'], self.get_time()))
+                                self.post_message(room_id=room_id, session_token=self.session_token, message='Got your message: \'{}\' at {}.'.format(message['message'], self.get_time())) # returns answer
             time.sleep(listen_freq)
 
     def login(self, username: str, password: str):

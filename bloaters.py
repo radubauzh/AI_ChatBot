@@ -1,5 +1,23 @@
 import rdflib
 QSTN_INTENT = ["person", "location", "time", "rating", "recommendations", "description", "crowdsourcing"]
+
+linkErrorDict = {
+  # award and ogranization not there because we need those in KG
+  "film organization":rdflib.term.URIRef("http://www.wikidata.org/entity/Q104649845"), 
+  "station building":rdflib.term.URIRef("http://www.wikidata.org/entity/Q1339195"), 
+  "fictional princess":rdflib.term.URIRef("http://www.wikidata.org/entity/Q61928601"), 
+  "comics":rdflib.term.URIRef("http://www.wikidata.org/entity/Q1004"),
+  "children's book":rdflib.term.URIRef("http://www.wikidata.org/entity/Q8275050"), 
+  "literary pentalogy":rdflib.term.URIRef("http://www.wikidata.org/entity/Q17710986"), 
+  "supervillain team":rdflib.term.URIRef("http://www.wikidata.org/entity/Q16101952"), 
+  "disputed territory":rdflib.term.URIRef("http://www.wikidata.org/entity/Q15239622"),
+  "geographic entity":rdflib.term.URIRef("http://www.wikidata.org/entity/Q27096213"),
+  "fictional character":rdflib.term.URIRef("http://www.wikidata.org/entity/Q95074"),
+  "written work":rdflib.term.URIRef("http://www.wikidata.org/entity/Q47461344"),
+  "series of creative works":rdflib.term.URIRef("http://www.wikidata.org/entity/Q7725310"),
+} 
+
+
 PREDICATES = {
  'IMDb ID': rdflib.term.URIRef('http://www.wikidata.org/prop/direct/P345'),
  'actor': rdflib.term.URIRef('http://www.wikidata.org/prop/direct/P161'),
@@ -39,8 +57,16 @@ PREDICATES = {
  'executive producer': rdflib.term.URIRef('http://www.wikidata.org/prop/direct/P1431'),
  'production company': rdflib.term.URIRef('http://www.wikidata.org/prop/direct/P272'),
  'languages spoken, written or signed': rdflib.term.URIRef('http://www.wikidata.org/prop/direct/P1412'),
-  
  }
+
+CLASSIFIED_PREDICATES = {"person":["actor", "cast member", "director", "screenwriter"],
+                          "location":["country", 'country of origin', 'filming location', 'place of birth', 'place of death',  'place of publication'],
+                          "time": ['publication date'],
+                          "description":[],
+                          "recommendations":[],
+                          "rating":[],
+                          "crowdsourcing":['languages spoken, written or signed', 'production company', 'executive producer', 'place of burial', 'allegiance', 'art director', 'armament', 'original language of film or TV show', 'film crew member', 'JMK film rating', 'production designer', 'main subject', 'occupation', 'director of photography', 'distributed by', 'box office', 'publication date',"actor", "voice actor", "cast member", "director", "screenwriter","country", 'country of origin', 'filming location', 'place of birth', 'place of death',  'place of publication']
+                          }
 
 CLASSIFIED_PREDICATES = {"person":["actor", "cast member", "director", "screenwriter"],
                           "location":["country", 'country of origin', 'filming location', 'place of birth', 'place of death',  'place of publication'],

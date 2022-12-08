@@ -129,3 +129,41 @@ SPARQL_TEMPLATE_DESCRIPTION = """
   }}
 """
 # ----------------------------------------------------
+humans_query = graph.query("""
+PREFIX ddis: <http://ddis.ch/atai/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX schema: <http://schema.org/>
+
+SELECT DISTINCT ?b ?label WHERE{
+  ?b wdt:P31/wdt:P279* wd:Q5.
+  ?b rdfs:label ?label
+}
+""")
+HUMANS_DICT = {}
+for k, v in humans_query:
+  v = v.toPython().lower()
+  while(v in HUMANS_DICT):
+    v+="0"
+  HUMANS_DICT[v] = k
+HUMANS_LBL = list(HUMANS_DICT.keys())
+# ----------------------------------------------------
+film_query = graph.query("""
+PREFIX ddis: <http://ddis.ch/atai/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX schema: <http://schema.org/>
+
+SELECT DISTINCT ?b ?label WHERE{
+  ?b wdt:P31/wdt:P279* wd:Q11424.
+  ?b rdfs:label ?label
+}
+""")
+
+FILM_DICT = {}
+for k, v in film_query:
+  v = v.toPython().lower()
+  while(v in FILM_DICT):
+    v+="0"
+  FILM_DICT[v] = k
+FILM_LBL = list(FILM_DICT.keys())

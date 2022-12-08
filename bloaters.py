@@ -1,5 +1,6 @@
 import rdflib
 from rdflib import Graph, graph
+from rdflib.namespace import RDF, RDFS, XSD, Namespace
 QSTN_INTENT = ["person", "location", "time", "rating", "recommendations", "description", "crowdsourcing"]
 
 linkErrorDict = {
@@ -127,7 +128,7 @@ SPARQL_TEMPLATE_DESCRIPTION = """
     {entity_uri} schema:description ?description
   }}
 """
-
+# ----------------------------------------------------
 humans_query = graph.query("""
 PREFIX ddis: <http://ddis.ch/atai/>
 PREFIX wd: <http://www.wikidata.org/entity/>
